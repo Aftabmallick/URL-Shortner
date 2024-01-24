@@ -21,7 +21,7 @@
     <script>
         async function urlShort(){
             const url = document.getElementById("url").value;
-            const apiUrl = 'http://tinyurl.com/api-create.php?url=' + encodeURIComponent(url);
+            const apiUrl = 'https://tinyurl.com/api-create.php?url=' + encodeURIComponent(url);
             const response = await fetch(apiUrl);
             console.log(response);
             if(response.ok){
