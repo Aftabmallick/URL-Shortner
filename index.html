@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+    <div class="container">
+        <label>URL Shortner</label>
+        <p>Generate a short url!</p>
+        <input type="text" name="" id="url" placeholder="Enter your url">
+        <button type="submit" onclick="urlShort()">Submit</button>
+    </div>
+    <div class="results">
+        <a href="" id="short" target="_blank"></a>
+    </div>
+</div>
+    <script>
+        async function urlShort(){
+            const url = document.getElementById("url").value;
+            const apiUrl = 'http://tinyurl.com/api-create.php?url=' + encodeURIComponent(url);
+            const response = await fetch(apiUrl);
+            console.log(response);
+            if(response.ok){
+                const data = await response.text();
+                document.getElementById("short").href=`${data}`;
+                document.getElementById("short").innerHTML=`${data}`;
+            }
+            else{
+                const error ="Error";
+                document.getElementById("short").innerHTML= `${error}`;
+            }
+        }
+    </script>
+</body>
+</html>
